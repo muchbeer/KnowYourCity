@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/locationsFragment">
+
+
+    <fragment
+        android:id="@+id/activitiesFragment"
+        android:name="raum.muchbeer.knowyourcity.presentation.fragment.ActivitiesFragment"
+        android:label="City Parks"
+        tools:layout="@layout/fragment_activity" >
+        <action
+            android:id="@+id/action_activitiesFragment_to_locationsFragment"
+            app:destination="@id/locationsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationsFragment"
+        android:name="raum.muchbeer.knowyourcity.presentation.fragment.LocationsFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_locations" >
+        <action
+            android:id="@+id/action_locationsFragment_to_locationFragment"
+            app:destination="@id/locationFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/locationsFragment" />
+
+        <argument
+            android:name="activityId"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="title"
+            android:defaultValue="Locations"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="raum.muchbeer.knowyourcity.presentation.fragment.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" >
+        <argument
+            android:name="locationId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="raum.muchbeer.knowyourcity.presentation.fragment.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_mapFragment_to_locationFragment"
+            app:destination="@id/locationFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/mapFragment" />
+    </fragment>
+
+
+</navigation>

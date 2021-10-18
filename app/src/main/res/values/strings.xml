@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">KnowYourCity</string>
+    <string name="title_activities">Activities</string>
+    <string name="title_locations">Locations</string>
+    <string name="title_map">Map</string>
+    <string name="title_location">Location Details</string>
+    <string name="hours_label">Hours</string>
+    <string name="activities_label">Activities</string>
+    <string name="distance">Distance</string>
+    <string name="distance_value">%1$.2f mi</string>
+    <string name="ok">OK</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

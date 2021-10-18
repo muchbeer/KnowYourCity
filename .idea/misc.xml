@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_baseline_tap_and_play_24.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_beach_access_black_24dp.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_directions_bike_black_24dp.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_directions_run_black_24dp.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_directions_walk_black_24dp.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_location_on_black_24dp.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_map_black_24dp.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_near_me_black_24dp.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_outdoor_grill_black_24dp.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_pool_black_24dp.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/activity_item.xml" value="0.1796875" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/fragment_activity.xml" value="0.1796875" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/fragment_location.xml" value="0.1796875" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/fragment_locations.xml" value="0.1796875" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/fragment_map.xml" value="0.1796875" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/location_activity_item.xml" value="0.1796875" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/location_item.xml" value="0.1796875" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1796875" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

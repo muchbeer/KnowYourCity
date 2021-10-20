@@ -1,5 +1,6 @@
 package raum.muchbeer.knowyourcity.presentation.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,7 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import com.google.android.gms.location.LocationServices
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import pub.devrel.easypermissions.AfterPermissionGranted
+import pub.devrel.easypermissions.EasyPermissions
 import raum.muchbeer.knowyourcity.R
 import raum.muchbeer.knowyourcity.databinding.FragmentLocationsBinding
 import raum.muchbeer.knowyourcity.presentation.viewmodel.location.LocationVM
@@ -18,18 +23,22 @@ import raum.muchbeer.knowyourcity.presentation.viewmodel.location.OnLocationClic
 @AndroidEntryPoint
 class LocationsFragment : Fragment(), OnLocationClickListener {
 
-    private var _binding : FragmentLocationsBinding? = null
+    private lateinit var binding : FragmentLocationsBinding
     private val viewModel : LocationVM by viewModels()
     private lateinit var adapter: LocationsAdapter
 
-    private val binding
-        get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentLocationsBinding.inflate(inflater, container, false)
+        binding = FragmentLocationsBinding.inflate(inflater, container, false)
+
+       return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         adapter = LocationsAdapter(this)
         binding.listLocations.adapter = adapter
 
@@ -46,13 +55,60 @@ class LocationsFragment : Fragment(), OnLocationClickListener {
                     }
             }
         }
-        return binding.root
+
+        currentLocation()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    @SuppressLint("MissingPermission")
+    @AfterPermissionGranted(RC_LOCATION)
+    private fun currentLocation() {
+        if(EasyPermissions.hasPermissions(requireContext(),
+            android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+            val fusedLocation = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+            fusedLocation.lastLocation.addOnSuccessListener {  location ->
+                location?.let {  loc ->
+                    adapter.setCurrentLocation(loc)
+                }
+            }
+        } else {
+            Snackbar.make(
+                binding.linearLayout,
+                getString(R.string.location_snackbar),
+                Snackbar.LENGTH_INDEFINITE
+            ).setAction(
+                R.string.ok
+            ) {
+                EasyPermissions.requestPermissions(
+                    this,
+                    getString(R.string.rationale_ask),
+                    RC_LOCATION,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                )
+
+            }.show()
+        }
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+      //  super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(
+            requestCode,
+            permissions,
+            grantResults
+        )
+    }
+
+
+
+    companion object {
+        const val RC_LOCATION = 2016
+    }
+
 
     override fun onClick(id: Int) {
         val action = LocationsFragmentDirections

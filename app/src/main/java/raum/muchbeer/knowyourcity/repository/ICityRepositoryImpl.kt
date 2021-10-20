@@ -1,8 +1,10 @@
 package raum.muchbeer.knowyourcity.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.google.android.gms.location.Geofence
 import raum.muchbeer.knowyourcity.data.*
+import raum.muchbeer.knowyourcity.presentation.fragment.LocationsFragment.Companion.BROADCASTrECEIVER
 
 class ICityRepositoryImpl(val cityDao: CityDao) : ICityRepository {
     override fun getAllActivities(): LiveData<List<Activity>> {
@@ -26,6 +28,7 @@ class ICityRepositoryImpl(val cityDao: CityDao) : ICityRepository {
     private suspend fun toggleGeofence(ids : Int) : GeofencingChanges {
         val previousLocations = cityDao.getLocationsForGeofencing()
         require(cityDao.toggleGeofenceEnabled(ids) == 1) { "Activity not found" }
+
         val newLocations = cityDao.getLocationsForGeofencing()
 
         val removedLocations = previousLocations.subtract(newLocations)

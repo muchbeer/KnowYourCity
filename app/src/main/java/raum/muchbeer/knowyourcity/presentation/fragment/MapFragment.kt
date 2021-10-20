@@ -1,5 +1,6 @@
 package raum.muchbeer.knowyourcity.presentation.fragment
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Bundle
@@ -14,20 +15,22 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import pub.devrel.easypermissions.AfterPermissionGranted
+import pub.devrel.easypermissions.EasyPermissions
 import raum.muchbeer.knowyourcity.R
 import raum.muchbeer.knowyourcity.databinding.FragmentMapBinding
+import raum.muchbeer.knowyourcity.presentation.fragment.LocationsFragment.Companion.RC_LOCATION
 import raum.muchbeer.knowyourcity.presentation.viewmodel.MapViewModel
 
 @AndroidEntryPoint
 class MapFragment : Fragment() {
     private val mapViewModel : MapViewModel by viewModels()
-
+    private lateinit var googleMap : GoogleMap
     private var _binding : FragmentMapBinding?= null
     private val binding
         get() = _binding!!
@@ -43,6 +46,7 @@ class MapFragment : Fragment() {
             childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
 
         mapFragment.getMapAsync { map ->
+            googleMap = map
             val bay = LatLng(37.68, -122.42)
             map.moveCamera(CameraUpdateFactory.zoomTo(10f))
             map.moveCamera(CameraUpdateFactory.newLatLng(bay))
@@ -66,6 +70,12 @@ class MapFragment : Fragment() {
                           .alpha(0.75f)
                     )
                     marker.tag = location.locationId
+
+                    map.addCircle(
+                        CircleOptions()
+                            .center(point)
+                            .radius(location.geofenceRadius.toDouble())
+                    )
                 }
             }
             map.setOnInfoWindowClickListener { marker ->
@@ -75,10 +85,50 @@ class MapFragment : Fragment() {
                 val navController = Navigation.findNavController(requireView())
                 navController.navigate(action)
             }
+
+            enableMyLocation()
         }
 
 
         return binding.root
+    }
+
+    @SuppressLint("MissingPermission")
+    @AfterPermissionGranted(RC_LOCATION)
+    private fun enableMyLocation() {
+        if(EasyPermissions.hasPermissions(requireContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+            googleMap.isMyLocationEnabled = true
+        } else {
+            Snackbar.make(
+                requireView(),
+                getString(R.string.map_snackbar),
+                Snackbar.LENGTH_INDEFINITE
+            ).setAction(
+                R.string.ok
+            ) {
+                EasyPermissions.requestPermissions(
+                    this,
+                    getString(R.string.map_rationale),
+                    RC_LOCATION,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                )
+
+            }.show()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        //  super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(
+            requestCode,
+            permissions,
+            grantResults
+        )
     }
 
     private fun getBitmapFromVector(

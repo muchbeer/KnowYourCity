@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import raum.muchbeer.knowyourcity.R
+import raum.muchbeer.knowyourcity.data.GeofenceBroadcastReceiver
 import raum.muchbeer.knowyourcity.databinding.FragmentLocationsBinding
 import raum.muchbeer.knowyourcity.presentation.viewmodel.location.LocationVM
 import raum.muchbeer.knowyourcity.presentation.viewmodel.location.LocationsAdapter
@@ -103,10 +104,9 @@ class LocationsFragment : Fragment(), OnLocationClickListener {
         )
     }
 
-
-
     companion object {
         const val RC_LOCATION = 2016
+        val BROADCASTrECEIVER = GeofenceBroadcastReceiver::class.qualifiedName
     }
 
 

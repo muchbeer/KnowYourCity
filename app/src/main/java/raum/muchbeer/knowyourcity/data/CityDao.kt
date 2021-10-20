@@ -36,5 +36,5 @@ interface CityDao {
     fun getLocationWithActivities(locationId: Int): LiveData<LocationWithActivities>
 
     @Query("UPDATE activity set geofenceEnabled = ~geofenceEnabled WHERE activityId = :id")
-    fun toggleGeofenceEnabled(id: Int): Int
+    suspend fun toggleGeofenceEnabled(id: Int): Int
 }

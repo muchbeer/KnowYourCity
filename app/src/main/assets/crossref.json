@@ -150,5 +150,13 @@
   {
     "activityId": 6,
     "locationId": 10
+  },
+  {
+    "activityId": 1,
+    "locationId": 11
+  },
+  {
+    "activityId": 5,
+    "locationId": 11
   }
 ]

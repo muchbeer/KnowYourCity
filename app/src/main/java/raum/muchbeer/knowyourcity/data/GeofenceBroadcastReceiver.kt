@@ -23,24 +23,29 @@ import raum.muchbeer.knowyourcity.repository.ICityRepository
 import javax.inject.Inject
 import javax.inject.Named
 
-
 @AndroidEntryPoint
-class GeofenceBroadcastReceiver : HiltBroadcastReceiver() {
+class GeofenceBroadcastReceiver : BroadcastReceiver() {
+
+    private val LOG_TAG = GeofenceBroadcastReceiver::class.simpleName
 
     @Inject lateinit var repository: ICityRepository
 
     @Inject @Named("db_coroutine")  lateinit var dbScope : CoroutineScope
 
-    override fun onReceive(context: Context?, intent: Intent?) {
-        super.onReceive(context, intent)
+
+
+   override fun onReceive(context: Context?, intent: Intent?) {
+
         val event = GeofencingEvent.fromIntent(intent)
 
         if (event.hasError()) {
+            Log.d(LOG_TAG, "THe are error sending notification")
             return
         }
 
         if (event.geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER) {
             val geofence = event.triggeringGeofences[0]
+            Log.d(LOG_TAG, "The notification has entered the Geofence is about to enter")
 
             dbScope.launch {
                 sendNotification(context!!, geofence.requestId.toInt())

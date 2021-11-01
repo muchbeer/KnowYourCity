@@ -23,4 +23,6 @@
     <string name="activities_background_rationale">Using the locations nearby functionality requires background access to your device\'s location</string>
     <string name="activities_background_reminder">We use your location even when this app is closed to share nearby activities</string>
 
+    <string name="custom_region_button">Draw Custom Region</string>
+    <string name="menu_title_filter">Filter</string>
 </resources>

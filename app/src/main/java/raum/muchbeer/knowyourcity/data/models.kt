@@ -25,7 +25,8 @@ data class Location(
     val hours: String,
     val latitude: Double,
     val longitude: Double,
-    val geofenceRadius: Float
+    val geofenceRadius: Float,
+    val placeId: String
 ) : Parcelable{
     fun getDistanceInMiles(currentLocation: android.location.Location): Float {
         val coordinates = android.location.Location("")

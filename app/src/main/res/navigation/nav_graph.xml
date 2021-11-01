@@ -13,7 +13,13 @@
         tools:layout="@layout/fragment_activity" >
         <action
             android:id="@+id/action_activitiesFragment_to_locationsFragment"
-            app:destination="@id/locationsFragment" />
+            app:destination="@id/locationsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/activitiesFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/locationsFragment"
@@ -61,7 +67,47 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/mapFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_filterDialogFragment"
+            app:destination="@id/filterDialogFragment" />
+
+
     </fragment>
+    <fragment
+        android:id="@+id/mazoezFragment"
+        android:name="raum.muchbeer.knowyourcity.presentation.fragment.MazoezFragment"
+        android:label="Mazoezi"
+        tools:layout="@layout/fragment_mazoez" >
+        <action
+            android:id="@+id/action_mazoezFragment_to_zoezFragment"
+            app:destination="@id/zoezFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/zoezFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/zoezFragment"
+        android:name="raum.muchbeer.knowyourcity.presentation.fragment.ZoezFragment"
+        android:label="Zoezi"
+        tools:layout="@layout/fragment_zoez" >
+        <action
+            android:id="@+id/action_zoezFragment_to_mazoezFragment"
+            app:destination="@id/mazoezFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/mazoezFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/filterDialogFragment"
+        android:name="raum.muchbeer.knowyourcity.presentation.fragment.FilterDialogFragment"
+        android:label="Filter Map"
+        tools:layout="@layout/dialog_filter"/>
 
 
 </navigation>

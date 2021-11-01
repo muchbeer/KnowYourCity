@@ -1,6 +1,7 @@
 package raum.muchbeer.knowyourcity.di
 
 import android.content.Context
+import androidx.room.RoomDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,23 +11,26 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import raum.muchbeer.knowyourcity.data.CityDao
 import raum.muchbeer.knowyourcity.data.CityDatabase
-import raum.muchbeer.knowyourcity.data.CityDatabase.CallBackInsertDb
+import raum.muchbeer.knowyourcity.data.CityDatabase.*
 import raum.muchbeer.knowyourcity.data.CityDatabase.Companion.getInstance
 import raum.muchbeer.knowyourcity.repository.ICityRepository
 import raum.muchbeer.knowyourcity.repository.ICityRepositoryImpl
 import javax.inject.Named
 import javax.inject.Singleton
+import kotlin.contracts.Returns
 
 @InstallIn(SingletonComponent::class)
 @Module
 object DbModule {
+
+
     @Singleton
     @Provides
     fun provideCityDatabase(
             @ApplicationContext  context : Context,
-            callback: CallBackInsertDb
+            @Named("db_coroutine") dbScope: CoroutineScope
             ) : CityDatabase {
-        return getInstance(context, callback)
+        return getInstance(context, dbScope)
     }
 
 

@@ -1,6 +1,7 @@
 package raum.muchbeer.knowyourcity.repository
 
 import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
 import raum.muchbeer.knowyourcity.data.*
 
 interface ICityRepository {
@@ -15,4 +16,15 @@ interface ICityRepository {
     fun getLocationWithActivities(locationId: Int): LiveData<LocationWithActivities>
 
     suspend fun toggleActivityGeofence(id: Int): GeofencingChanges
+
+    suspend fun insertWorkout(workout: Workout): Int
+
+    suspend fun insertWorkoutPoint(workoutPoint: WorkoutPoint)
+
+    suspend fun updateWorkout(workout: Workout)
+
+    fun getAllWorkouts(): LiveData<List<Workout>>
+
+    suspend fun getAllRegionsWithPoints(): List<RegionWithPoints>
+
 }

@@ -1,12 +1,12 @@
 [
   {
     "activityId": 1,
-    "title": "Hiking",
+    "title": "Shopping",
     "icon": "terrain"
   },
   {
     "activityId": 2,
-    "title": "Running",
+    "title": "Live Band",
     "icon": "directions_run"
   },
   {
@@ -16,7 +16,7 @@
   },
   {
     "activityId": 4,
-    "title": "Biking",
+    "title": "Music",
     "icon": "directions_bike"
   },
   {
@@ -41,12 +41,12 @@
   },
   {
     "activityId": 9,
-    "title": "Soccer",
+    "title": "Beach",
     "icon": "sports_soccer"
   },
   {
     "activityId": 10,
-    "title": "Tennis",
+    "title": "Parks",
     "icon": "sports_tennis"
   }
 ]

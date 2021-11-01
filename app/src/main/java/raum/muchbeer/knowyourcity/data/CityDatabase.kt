@@ -1,9 +1,11 @@
 package raum.muchbeer.knowyourcity.data
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.google.gson.GsonBuilder
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -13,11 +15,14 @@ import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Provider
+private val TAG = CityDatabase::class.simpleName
 
-@Database(entities = [Activity::class, Location::class,  ActivityLocationCrossRef::class],
+@Database(entities = [Activity::class, Location::class,  ActivityLocationCrossRef::class,
+    Region::class, RegionPoint::class, Workout::class, WorkoutPoint::class],
     exportSchema = false,
-    version = 1)
+    version = 3)
 abstract class CityDatabase() : RoomDatabase() {
+
 
     abstract fun cityDao() : CityDao
 
@@ -25,7 +30,7 @@ abstract class CityDatabase() : RoomDatabase() {
         @Volatile
         private var INSTANCE: CityDatabase? = null
 
-        fun getInstance(context: Context, callBack : Callback): CityDatabase {
+        fun getInstance(context: Context, dbScope: CoroutineScope): CityDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -36,55 +41,45 @@ abstract class CityDatabase() : RoomDatabase() {
                     CityDatabase::class.java,
                     "city_database.db"
                 )
-                    .addCallback(callBack)
+                    .addCallback(object : Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            super.onCreate(db)
+                            val dao = getInstance(context, dbScope).cityDao()
+                            dbScope.launch {
+                                val gson = GsonBuilder().create()
+
+                                var data: String? = null
+                                try {
+
+                                    data = context.assets.open("data.json").bufferedReader().use { it.readText()
+                                    }
+                                    Log.d("CityDatabase", "tHE data out is: : ${data}")
+                                } catch (ioException: IOException) {
+                                    Log.d("CityDatabase", "tHE json error is : ${ioException.message}")
+                                    ioException.printStackTrace()
+                                }
+
+                                if (data != null) {
+                                    val records = gson.fromJson(data, DatabaseContents::class.java)
+                                    dao.insertActivities(records.activities)
+                                    dao.insertActivityLocationCrossRefs(records.crossrefs)
+                                    dao.insertLocations(records.locations)
+                                    dao.insertRegions(records.regions)
+                                    dao.insertRegionPoints(records.regionpoints)
+                                }
+                            }
+                            Log.d(TAG, "Entered Callback23")
+                        }
+                    })
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 return instance
             }
         }
 
-}
-
-class CallBackInsertDb @Inject constructor(
-    @ApplicationContext private val context: Context,
-    private val database: Provider<CityDatabase>,
-    @Named("db_coroutine") private val dbScope : CoroutineScope
-) : RoomDatabase.Callback() {
-
-    override fun onCreate(db: SupportSQLiteDatabase) {
-        super.onCreate(db)
-
-        val dao = database.get().cityDao()
-        dbScope.launch {
-
-            val gson = GsonBuilder().create()
-            var data = getJsonDataFromAsset(context, "activities.json")
-
-            dao.insertActivities(gson.fromJson(data, Array<Activity>::class.java).toList())
-
-            data = getJsonDataFromAsset(context, "locations.json")
-
-          dao.insertLocations(gson.fromJson(data, Array<Location>::class.java).toList())
-
-         data = getJsonDataFromAsset(context, "crossref.json")
-         dao.insertActivityLocationCrossRefs(
-                gson.fromJson(
-                    data,
-                    Array<ActivityLocationCrossRef>::class.java
-                ).toList()
-            )
-        }
-    }
-
-    private fun getJsonDataFromAsset(context: Context, fileName: String): String? {
-        val jsonString: String
-        try {
-            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
-        } catch (ioException: IOException) {
-            ioException.printStackTrace()
-            return null
-        }
-        return jsonString
     }
 }
-}
+
+
+

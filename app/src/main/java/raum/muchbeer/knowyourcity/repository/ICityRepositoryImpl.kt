@@ -2,11 +2,18 @@ package raum.muchbeer.knowyourcity.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.location.Geofence
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import raum.muchbeer.knowyourcity.data.*
 import raum.muchbeer.knowyourcity.presentation.fragment.LocationsFragment.Companion.BROADCASTrECEIVER
 
 class ICityRepositoryImpl(val cityDao: CityDao) : ICityRepository {
+
+    private val TAG = ICityRepositoryImpl::class.simpleName
     override fun getAllActivities(): LiveData<List<Activity>> {
       return  cityDao.getAllActivities()     }
 
@@ -24,6 +31,28 @@ class ICityRepositoryImpl(val cityDao: CityDao) : ICityRepository {
 
     override suspend fun toggleActivityGeofence(id: Int): GeofencingChanges {
     return toggleGeofence(id) }
+
+    override suspend fun insertWorkout(workout: Workout): Int {
+        return cityDao.insertWorkout(workout).toInt()
+    }
+
+    override suspend fun insertWorkoutPoint(workoutPoint: WorkoutPoint) {
+        cityDao.insertWorkoutPoint(workoutPoint)
+    }
+
+    override suspend fun updateWorkout(workout: Workout) {
+        cityDao.updateWorkout(workout)
+    }
+
+    override fun getAllWorkouts(): LiveData<List<Workout>> {
+        return cityDao.getAllWorkouts()
+    }
+
+    override suspend fun getAllRegionsWithPoints(): List<RegionWithPoints> {
+        return cityDao.getAllRegionsWithPoints()
+    }
+
+
 
     private suspend fun toggleGeofence(ids : Int) : GeofencingChanges {
         val previousLocations = cityDao.getLocationsForGeofencing()

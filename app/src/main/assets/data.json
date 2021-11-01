@@ -1,0 +1,484 @@
+{
+  "activities": [
+    {
+      "activityId": 1,
+      "title": "Shopping",
+      "icon": "terrain"
+    },
+    {
+      "activityId": 2,
+      "title": "Live Band",
+      "icon": "directions_run"
+    },
+    {
+      "activityId": 3,
+      "title": "Walking",
+      "icon": "directions_walk"
+    },
+    {
+      "activityId": 4,
+      "title": "Music",
+      "icon": "directions_bike"
+    },
+    {
+      "activityId": 5,
+      "title": "Swimming",
+      "icon": "pool"
+    },
+    {
+      "activityId": 6,
+      "title": "Sunbathing",
+      "icon": "beach_access"
+    },
+    {
+      "activityId": 7,
+      "title": "Grilling",
+      "icon": "outdoor_grill"
+    },
+    {
+      "activityId": 8,
+      "title": "Basketball",
+      "icon": "sports_basketball"
+    },
+    {
+      "activityId": 9,
+      "title": "Beach",
+      "icon": "sports_soccer"
+    },
+    {
+      "activityId": 10,
+      "title": "Parks",
+      "icon": "sports_tennis"
+    }
+  ],
+  "crossrefs": [
+    {
+      "activityId": 2,
+      "locationId": 1
+    },
+    {
+      "activityId": 3,
+      "locationId": 1
+    },
+    {
+      "activityId": 4,
+      "locationId": 1
+    },
+    {
+      "activityId": 5,
+      "locationId": 1
+    },
+    {
+      "activityId": 6,
+      "locationId": 1
+    },
+    {
+      "activityId": 7,
+      "locationId": 1
+    },
+    {
+      "activityId": 7,
+      "locationId": 2
+    },
+    {
+      "activityId": 8,
+      "locationId": 2
+    },
+    {
+      "activityId": 9,
+      "locationId": 2
+    },
+    {
+      "activityId": 10,
+      "locationId": 2
+    },
+    {
+      "activityId": 3,
+      "locationId": 3
+    },
+    {
+      "activityId": 10,
+      "locationId": 3
+    },
+    {
+      "activityId": 1,
+      "locationId": 4
+    },
+    {
+      "activityId": 2,
+      "locationId": 4
+    },
+    {
+      "activityId": 3,
+      "locationId": 4
+    },
+    {
+      "activityId": 7,
+      "locationId": 4
+    },
+    {
+      "activityId": 1,
+      "locationId": 5
+    },
+    {
+      "activityId": 2,
+      "locationId": 5
+    },
+    {
+      "activityId": 3,
+      "locationId": 5
+    },
+    {
+      "activityId": 4,
+      "locationId": 5
+    },
+    {
+      "activityId": 9,
+      "locationId": 6
+    },
+    {
+      "activityId": 3,
+      "locationId": 6
+    },
+    {
+      "activityId": 2,
+      "locationId": 7
+    },
+    {
+      "activityId": 3,
+      "locationId": 7
+    },
+    {
+      "activityId": 6,
+      "locationId": 7
+    },
+    {
+      "activityId": 2,
+      "locationId": 8
+    },
+    {
+      "activityId": 3,
+      "locationId": 8
+    },
+    {
+      "activityId": 4,
+      "locationId": 8
+    },
+    {
+      "activityId": 5,
+      "locationId": 8
+    },
+    {
+      "activityId": 7,
+      "locationId": 8
+    },
+    {
+      "activityId": 1,
+      "locationId": 9
+    },
+    {
+      "activityId": 2,
+      "locationId": 9
+    },
+    {
+      "activityId": 3,
+      "locationId": 9
+    },
+    {
+      "activityId": 9,
+      "locationId": 10
+    },
+    {
+      "activityId": 2,
+      "locationId": 10
+    },
+    {
+      "activityId": 3,
+      "locationId": 10
+    },
+    {
+      "activityId": 4,
+      "locationId": 10
+    },
+    {
+      "activityId": 6,
+      "locationId": 10
+    },
+    {
+      "activityId": 1,
+      "locationId": 11
+    },
+    {
+      "activityId": 5,
+      "locationId": 11
+    }
+  ],
+  "locations": [
+    {
+      "locationId": 1,
+      "title": "TG Lounge Tukuyu Band",
+      "description": "This band is live every Friday from 08:00 pm and is on fire now everybody loves it.",
+      "hours": "24 hours",
+      "latitude": -6.786402,
+      "longitude": 39.177006,
+      "geofenceRadius": 1000,
+      "placeId": "ChIJ8_HnpT9PXBgRHlnlqUPduz8"
+    },
+    {
+      "locationId": 2,
+      "title": "Coco Beach",
+      "description": "A place where people walks in the evening and taking different exercise enjoy and burning muscles",
+      "hours": "13 hours",
+      "latitude": -6.779666,
+      "longitude": 39.286240,
+      "geofenceRadius": 1000,
+      "placeId": "ChIJ-25La_dMXBgRhGYKtxfu19s"
+    },
+    {
+      "locationId": 3,
+      "title": "Epidor",
+      "description": "This is when a relaxing, meeting and family place came into life, carrying the standard, which gave the house its reputation.\n\nToday, epidor became the most popular breakfast and lunch destination in Dar es Salaam with its coffee shop featuring a French bakery, Lebanese specialties alongside freshly made juices and specialty coffee",
+      "hours": "5am - 10pm",
+      "latitude": -6.741794,
+      "longitude": 39.280650,
+      "geofenceRadius": 1000,
+      "placeId": "ChIJR36EwQpNXBgRHA3pbJXP5rw"
+    },
+    {
+      "locationId": 4,
+      "title": " RoseGarden",
+      "description": "Best place for meetup to have meetings about works, Sendoff, Weddings and even watching football",
+      "hours": "8am - 12pm",
+      "latitude": -6.770465,
+      "longitude": 39.244784,
+      "geofenceRadius": 1000,
+      "placeId": "ChIJ4RNGpSVMXBgRH7hZALa9onY"
+    },
+    {
+      "locationId": 5,
+      "title": "Clock Tower",
+      "description": "The first tower timer that was located long time during independency",
+      "hours": "24 hours",
+      "latitude": -6.821571,
+      "longitude": 39.283904,
+      "geofenceRadius": 1000,
+      "placeId": "ChIJ3ZqUowZLXBgRWpk3rkN1OKM"
+    },
+    {
+      "locationId": 6,
+      "title": "Governers Sports Bar",
+      "description": "An urban park where the hot band in town is found and the band called Skylight",
+      "hours": "24 hours",
+      "latitude": -6.786227,
+      "longitude": 39.272500,
+      "geofenceRadius": 1000,
+      "placeId" : "ChIJvb1_l3tMXBgR9Ash1uhapfg"
+    },
+    {
+      "locationId": 7,
+      "title": "Beach Kidimbwi",
+      "description": "A park on a former army base located in the Golden Gate National Recreation Area",
+      "hours": "24 hours",
+      "latitude": -6.708172,
+      "longitude": 39.232343,
+      "geofenceRadius": 1000,
+      "placeId" : "ChIJZyB-U_ZRXBgRmSpwMMO2S2w"
+    },
+    {
+      "locationId": 8,
+      "title": "Kunduchi Wet n Wild",
+      "description": "for all your corporate outings and venue that require capacity, facilities and manpower to host those memorable event that you would want. We also cater for the needs and requests at a personalized and more customized level for each client that would want to have their event at the Kunduchi water park.",
+      "hours": "24 hours",
+      "latitude": -6.665938,
+      "longitude": 39.217909,
+      "geofenceRadius": 1000,
+      "placeId": "ChIJc1NGwElRXBgR-Qo20JUrMrI"
+    },
+    {
+      "locationId": 9,
+      "title": "Mbudya",
+      "description": "A small island that is located distance from the beach",
+      "hours": "24 hours",
+      "latitude": -6.657212,
+      "longitude": 39.245206,
+      "geofenceRadius": 1000,
+      "placeId" : "ChIJ-5lKRghUXBgRMiWFzqltqAA"
+    },
+    {
+      "locationId": 10,
+      "title": "Kinyerezi Park",
+      "description": "A great park to have fun with family place where kids play different games",
+      "hours": "24 hours",
+      "latitude": -6.842103,
+      "longitude": 39.155082,
+      "geofenceRadius": 1000,
+      "placeId" : "ChIJpekp7NhJXBgREJoLS2BETAs"
+    },
+    {
+      "locationId": 11,
+      "title": "Victoria Plaza",
+      "description": "A mall like structure building having place to rent or buy houses as well as shops",
+      "hours": "24 hours",
+      "latitude": -6.778782,
+      "longitude": 39.253783,
+      "geofenceRadius": 500,
+      "placeId" : "ChIJDxKjRydNXBgRmOhVD7Lamzc"
+    }
+  ],
+  "regions": [
+    {
+      "id": 1,
+      "title": "Kinondoni",
+      "color": "#59ef5350"
+    },
+    {
+      "id": 2,
+      "title": "Oceanside",
+      "color": "#591e88e5"
+    },
+    {
+      "id": 3,
+      "title": "Bata Life",
+      "color": "#59ba68c8"
+    },
+    {
+      "id": 4,
+      "title": "Center",
+      "color": "#59ffee58"
+    }
+  ],
+  "regionpoints": [
+    {
+      "latitude": -6.769471,
+      "longitude": 39.233847,
+      "regionId": 1
+    },
+    {
+      "latitude": -6.761483,
+      "longitude": 39.247816,
+      "regionId": 1
+    },
+    {
+      "latitude": -6.769328,
+      "longitude": 39.25904,
+      "regionId": 1
+    },
+    {
+      "latitude": -6.78071300,
+      "longitude": 39.2669403,
+      "regionId": 1
+    },
+    {
+      "latitude": -6.789514,
+      "longitude": 39.259088,
+      "regionId": 1
+    },
+    {
+      "latitude": -6.787087,
+      "longitude": 39.232398,
+      "regionId": 1
+    },
+    {
+      "latitude": -6.75676216,
+      "longitude": 39.2735172,
+      "regionId": 2
+    },
+    {
+      "latitude": -6.7441601,
+      "longitude": 39.272840,
+      "regionId": 2
+    },
+    {
+      "latitude": -6.730129,
+      "longitude": 39.27732,
+      "regionId": 2
+    },
+    {
+      "latitude": -6.736514,
+      "longitude": 39.283923,
+      "regionId": 2
+    },
+    {
+      "latitude": -6.7451682,
+      "longitude": 39.286545,
+      "regionId": 2
+    },
+    {
+      "latitude": -6.758627,
+      "longitude": 39.28571,
+      "regionId": 2
+    },
+    {
+      "latitude": -6.7672092,
+      "longitude": 39.281936,
+      "regionId": 2
+    },
+    {
+      "latitude": -6.7547534,
+      "longitude": 39.245244,
+      "regionId": 3
+    },
+    {
+      "latitude": -6.7583743,
+      "longitude": 39.255271,
+      "regionId": 3
+    },
+    {
+      "latitude": -6.7659639,
+      "longitude": 39.271022,
+      "regionId": 3
+    },
+    {
+      "latitude": -6.7674336,
+      "longitude": 39.277860,
+      "regionId": 3
+    },
+    {
+      "latitude": -6.7695065,
+      "longitude": 39.257653,
+      "regionId": 3
+    },
+    {
+      "latitude": -6.7608238,
+      "longitude": 39.239735,
+      "regionId": 3
+    },
+
+    {
+      "latitude": 37.75877,
+      "longitude": -122.461,
+      "regionId": 4
+    },
+    {
+      "latitude": -6.7893466,
+      "longitude": 39.278430,
+      "regionId": 4
+    },
+    {
+      "latitude": -6.7955292,
+      "longitude": 39.285984,
+      "regionId": 4
+    },
+    {
+      "latitude": -6.8140766,
+      "longitude": 39.298844,
+      "regionId": 4
+    },
+    {
+      "latitude": -6.8226912,
+      "longitude": 39.283840,
+      "regionId": 4
+    },
+    {
+      "latitude": -6.8318124,
+      "longitude": 39.279757,
+      "regionId": 4
+    },
+    {
+      "latitude": -6.8127590,
+      "longitude": 39.271285,
+      "regionId": 4
+    }
+  ]
+
+}

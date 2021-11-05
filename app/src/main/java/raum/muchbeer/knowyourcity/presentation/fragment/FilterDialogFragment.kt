@@ -44,9 +44,9 @@ class FilterDialogFragment : DialogFragment(), RegionClickListener {
         adapter = RegionsAdapter(this)
         bindingView.listRegions.adapter = adapter
 
-        mapViewModel.selectedRegions.observe(viewLifecycleOwner)  {
+      /*  mapViewModel.selectedRegions.observe(viewLifecycleOwner)  {
             adapter.setRegions(it)
-        }
+        }*/
 
         bindingView.customButton.setOnClickListener {
             mapViewModel.setBeginCustomDraw(true)
@@ -61,5 +61,6 @@ class FilterDialogFragment : DialogFragment(), RegionClickListener {
     ): View? = bindingView.root
 
     override fun onClick(id: Int) {
-        mapViewModel.toggleVisibleRegion(id)    }
+       // mapViewModel.toggleVisibleRegion(id)
+    }
 }

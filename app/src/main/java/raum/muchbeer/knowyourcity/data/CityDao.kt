@@ -39,6 +39,9 @@ interface CityDao {
     @Query("SELECT * FROM Location")
     fun getAllLocations(): LiveData<List<Location>>
 
+    @Query("SELECT * FROM Region")
+    fun getAllRegion() : LiveData<List<Region>>
+
     @Transaction
     @Query("SELECT * FROM Activity WHERE activityId = :activityId")
     fun getActivityWithLocations(activityId: Int): LiveData<ActivityWithLocations>
@@ -60,6 +63,10 @@ interface CityDao {
     @Transaction
     @Query("SELECT * FROM Region")
     suspend fun getAllRegionsWithPoints(): List<RegionWithPoints>
+
+    @Transaction
+    @Query("SELECT * FROM Region")
+    fun getAllRegionsWithPointsLiveData() : LiveData<List<RegionWithPoints>>
 
     @Query("UPDATE activity set geofenceEnabled = ~geofenceEnabled WHERE activityId = :id")
     suspend fun toggleGeofenceEnabled(id: Int): Int

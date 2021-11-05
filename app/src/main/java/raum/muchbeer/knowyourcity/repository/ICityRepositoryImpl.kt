@@ -52,7 +52,13 @@ class ICityRepositoryImpl(val cityDao: CityDao) : ICityRepository {
         return cityDao.getAllRegionsWithPoints()
     }
 
+    override fun getAllRegions(): LiveData<List<Region>> {
+        return cityDao.getAllRegion()
+    }
 
+    override fun getAllRegionsWthPointsLiveData(): LiveData<List<RegionWithPoints>> {
+        return cityDao.getAllRegionsWithPointsLiveData()
+    }
 
     private suspend fun toggleGeofence(ids : Int) : GeofencingChanges {
         val previousLocations = cityDao.getLocationsForGeofencing()

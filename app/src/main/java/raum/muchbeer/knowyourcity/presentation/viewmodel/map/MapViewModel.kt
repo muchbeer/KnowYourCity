@@ -20,6 +20,10 @@ private val repository : ICityRepository
 
     val allLocations = repository.getAllLocations()
 
+    val allRegions = repository.getAllRegions()
+
+    val allRegionWithPointsLiveData = repository.getAllRegionsWthPointsLiveData()
+
     private val _allRegions = MutableLiveData<List<RegionWithPoints>>()
     val allRegionsLiveData : LiveData<List<RegionWithPoints>>
         get() = _allRegions
@@ -29,24 +33,30 @@ private val repository : ICityRepository
         get() = visibleRegionIds
 
     init {
-        visibleRegionIds.value = ArrayList(_allRegions.value!!.map { r -> r.region.id })
+   /*     visibleRegionIds.value = ArrayList(_allRegions.value!!.map { r ->
+            r.region.id } ?: emptyList<Int>())*/
     }
 
     val beginCustomDraw = MutableLiveData<Boolean>(false)
 
-    val selectedRegions: LiveData<List<Pair<Region, Boolean>>> =
-        Transformations.switchMap(visibleRegionIds) { ids ->
-            val list = arrayListOf<Pair<Region, Boolean>>()
-            for (wrapper in _allRegions.value!!) {
-                if (ids.isEmpty()) {
-                    list.add(Pair(wrapper.region, false))
-                } else {
-                    list.add(Pair(wrapper.region, ids.contains(wrapper.region.id)))
-                }
-            }
+   fun selectedRegions() : LiveData<List<Pair<Region, Boolean>>> {
+       visibleRegionIds.value = ArrayList(_allRegions.value!!.map { r ->
+           r.region.id
+       })
+     return   Transformations.switchMap(visibleRegionIds) { ids ->
+           val list = arrayListOf<Pair<Region, Boolean>>()
+           for (wrapper in _allRegions.value!!) {
+               if (ids.isEmpty()) {
+                   list.add(Pair(wrapper.region, false))
+               } else {
+                   list.add(Pair(wrapper.region, ids.contains(wrapper.region.id)))
+               }
+           }
 
-            MutableLiveData(list.toList())
-        }
+           MutableLiveData(list.toList())
+       }
+   }
+
 
     fun toggleVisibleRegion(id: Int?) {
         var currentIds: ArrayList<Int> = visibleRegionIds.value!!
@@ -69,7 +79,10 @@ private val repository : ICityRepository
         beginCustomDraw.value = status
     }
 
-    fun mutableRegionId() = viewModelScope.launch {
+   fun mutableRegionId() = viewModelScope.launch {
+        repository.getAllRegionsWithPoints().forEach {
+            Log.d(TAG, "Reached Mutable List region with value: ${it.region.title}")
+        }
         _allRegions.value = repository.getAllRegionsWithPoints()
     }
 }

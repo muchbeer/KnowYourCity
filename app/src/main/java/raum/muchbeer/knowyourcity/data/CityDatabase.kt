@@ -47,10 +47,8 @@ abstract class CityDatabase() : RoomDatabase() {
                             val dao = getInstance(context, dbScope).cityDao()
                             dbScope.launch {
                                 val gson = GsonBuilder().create()
-
                                 var data: String? = null
                                 try {
-
                                     data = context.assets.open("data.json").bufferedReader().use { it.readText()
                                     }
                                     Log.d("CityDatabase", "tHE data out is: : ${data}")

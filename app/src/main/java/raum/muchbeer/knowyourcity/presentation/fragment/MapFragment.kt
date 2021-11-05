@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Point
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.annotation.ColorRes
@@ -31,6 +33,8 @@ import raum.muchbeer.knowyourcity.presentation.viewmodel.map.MapViewModel
 
 @AndroidEntryPoint
 class MapFragment : Fragment() {
+
+    private val TAG = MapFragment::class.simpleName
     private val mapViewModel : MapViewModel by viewModels()
     private lateinit var googleMap : GoogleMap
     private var _binding : FragmentMapBinding?= null
@@ -43,6 +47,8 @@ class MapFragment : Fragment() {
     private val markers = arrayListOf<Marker>()
     private var drawing = false
     private val drawPoints = arrayListOf<LatLng>()
+
+
 
 
     override fun onCreateView(
@@ -88,7 +94,17 @@ class MapFragment : Fragment() {
     }
 
     private fun loadLocations() {
-        mapViewModel.allLocations.observe(viewLifecycleOwner) { locations ->
+
+        mapViewModel.allRegionWithPointsLiveData.observe(viewLifecycleOwner) {
+            it.forEach { regPoint->
+                Log.d(TAG, "Values of Regions: ${regPoint.region.title}")
+
+                regPoint.points.forEach {
+                    Log.d(TAG, "Values of Longitude: ${it.longitude}")
+                }
+            }
+        }
+       mapViewModel.allLocations.observe(viewLifecycleOwner) { locations ->
             locations.forEach { location ->
                 val point = LatLng(location.latitude, location.longitude)
                 val marker = googleMap.addMarker(
@@ -117,11 +133,12 @@ class MapFragment : Fragment() {
 
     private fun loadRegions() {
         //Now insert value
-        mapViewModel.mutableRegionId()
+         mapViewModel.mutableRegionId()
 
         //Then you observe down
         mapViewModel.allRegionsLiveData.observe(viewLifecycleOwner)  { regionWthPoints ->
             regionWthPoints.forEach {
+                Log.d(TAG, "tHE value from Fragment observed: ${it.region.title}")
                 val points = it.points.map { regionPoint ->
                     LatLng(
                         regionPoint.latitude,
@@ -265,5 +282,74 @@ class MapFragment : Fragment() {
             else -> super.onOptionsItemSelected(item)
 
         }
+    }
+
+
+    private fun configureCustomDraw() {
+        mapViewModel.beginCustomDraw.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                drawing = true
+                drawPoints.clear()
+                polyline = googleMap.addPolyline(
+                    PolylineOptions()
+                        .color(
+                            ResourcesCompat.getColor(
+                                resources,
+                                R.color.colorDrawLine,
+                                requireContext().theme
+                            )
+                        )
+                )
+                polygons.forEach { p -> p.isVisible = false }
+                markers.forEach { m -> m.isVisible = false }
+            }
+        })
+
+/*        drawWindow.setOnTouchListener { v, event ->
+            val x = event.x.roundToInt()
+            val y = event.y.roundToInt()
+            val screenPoint = Point(x, y)
+            val mapPoint = googleMap.projection.fromScreenLocation(screenPoint)
+
+            when (event.action) {
+                MotionEvent.ACTION_DOWN,
+                MotionEvent.ACTION_MOVE -> {
+                    if (drawing) {
+                        drawPoints.add(mapPoint)
+                        polyline.points = drawPoints
+                    }
+                }
+
+                MotionEvent.ACTION_UP -> {
+                    polyline.remove()
+                    val customPolygon = googleMap.addPolygon(
+                        PolygonOptions()
+                            .addAll(drawPoints)
+                            .fillColor(
+                                ResourcesCompat.getColor(
+                                    resources,
+                                    R.color.colorDrawFill,
+                                    requireContext().theme
+                                )
+                            )
+                            .strokeWidth(0f)
+                    )
+                    customPolygon.tag = CUSTOM
+                    val customIndex = polygons.indexOfFirst { p -> p.tag == CUSTOM }
+                    if (customIndex == -1) {
+                        polygons.add(customPolygon)
+                    } else {
+                        polygons[customIndex] = customPolygon
+                    }
+
+                    mapViewModel.toggleVisibleRegion(null)
+                    drawing = false
+                    mapViewModel.setBeginCustomDraw(false)
+                    v.performClick()
+                }
+            }
+
+            drawing
+        }*/
     }
 }

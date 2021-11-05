@@ -27,4 +27,8 @@ interface ICityRepository {
 
     suspend fun getAllRegionsWithPoints(): List<RegionWithPoints>
 
+    fun getAllRegions() : LiveData<List<Region>>
+
+    fun getAllRegionsWthPointsLiveData() : LiveData<List<RegionWithPoints>>
+
 }

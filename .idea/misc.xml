@@ -15,11 +15,15 @@
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_outdoor_grill_black_24dp.xml" value="0.17777777777777778" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable-v24/ic_pool_black_24dp.xml" value="0.17777777777777778" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable/ic_baseline_filter_list_24.xml" value="0.15625" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable/ic_home.xml" value="0.15185185185185185" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17777777777777778" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/activity_item.xml" value="0.1796875" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/activity_total.xml" value="0.1" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/dialog_filter.xml" value="0.14010416666666667" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/fragment_activity.xml" value="0.1796875" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/fragment_detail.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/fragment_location.xml" value="0.1796875" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/fragment_locations.xml" value="0.1796875" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/fragment_map.xml" value="0.1796875" />
@@ -28,6 +32,7 @@
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/layout/region_item.xml" value="0.14010416666666667" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/menu/map_menu.xml" value="0.14010416666666667" />
+        <entry key="..\:/Users/muchbeer/AndroidStudioProjects/KnowYourCity/app/src/main/res/menu/total_menu.xml" value="0.15989583333333332" />
       </map>
     </option>
   </component>

@@ -2,9 +2,7 @@ package raum.muchbeer.knowyourcity.data
 
 import android.content.Context
 import android.util.Log
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.google.gson.GsonBuilder
@@ -18,17 +16,36 @@ import javax.inject.Provider
 private val TAG = CityDatabase::class.simpleName
 
 @Database(entities = [Activity::class, Location::class,  ActivityLocationCrossRef::class,
-    Region::class, RegionPoint::class, Workout::class, WorkoutPoint::class],
+    Region::class, RegionPoint::class, Workout::class, WorkoutPoint::class,
+    AgrienceModel::class, BpapDetailModel::class, CgrievanceModel::class, DpapAttachEntity::class],
     exportSchema = false,
-    version = 3)
+    version = 13)
+@TypeConverters(Converters::class)
 abstract class CityDatabase() : RoomDatabase() {
 
 
     abstract fun cityDao() : CityDao
+    abstract fun totalDao() : TotalDao
 
     companion object {
         @Volatile
         private var INSTANCE: CityDatabase? = null
+
+        fun getTotalInstance(context: Context) : CityDatabase {
+            val tempInstance = INSTANCE
+            if (tempInstance != null) {
+                return tempInstance
+            }
+            synchronized(this) {
+                val instanceTotal = Room.databaseBuilder(
+                    context.applicationContext,
+                    CityDatabase::class.java,
+                    "total_database.db"
+                ).build()
+                INSTANCE = instanceTotal
+                return instanceTotal
+            }
+        }
 
         fun getInstance(context: Context, dbScope: CoroutineScope): CityDatabase {
             val tempInstance = INSTANCE

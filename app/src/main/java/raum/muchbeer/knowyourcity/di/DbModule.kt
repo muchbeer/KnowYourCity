@@ -13,8 +13,11 @@ import raum.muchbeer.knowyourcity.data.CityDao
 import raum.muchbeer.knowyourcity.data.CityDatabase
 import raum.muchbeer.knowyourcity.data.CityDatabase.*
 import raum.muchbeer.knowyourcity.data.CityDatabase.Companion.getInstance
+import raum.muchbeer.knowyourcity.data.TotalDao
 import raum.muchbeer.knowyourcity.repository.ICityRepository
 import raum.muchbeer.knowyourcity.repository.ICityRepositoryImpl
+import raum.muchbeer.knowyourcity.repository.ITotalRepository
+import raum.muchbeer.knowyourcity.repository.ITotalRepositoryImpl
 import javax.inject.Named
 import javax.inject.Singleton
 import kotlin.contracts.Returns
@@ -42,6 +45,12 @@ object DbModule {
 
     @Singleton
     @Provides
+    fun provideTotalDao(cityDatabase: CityDatabase) : TotalDao {
+        return cityDatabase.totalDao()
+    }
+
+    @Singleton
+    @Provides
     @Named("db_coroutine")
     fun provideCallBackCoroutine() = CoroutineScope(SupervisorJob())
 
@@ -49,6 +58,12 @@ object DbModule {
     @Provides
     fun provideRepository(dao: CityDao) : ICityRepository {
       return  ICityRepositoryImpl(dao)
+    }
+
+    @Singleton
+    @Provides
+    fun provideTotalRepository(dao: TotalDao) : ITotalRepository {
+        return ITotalRepositoryImpl(dao)
     }
 
 }

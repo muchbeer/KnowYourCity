@@ -94,5 +94,6 @@ dependencies {
    // implementation "com.google.maps.android:android-maps-utils:$map_util_version"
     implementation "com.google.maps.android:maps-ktx:$map_util_version"
 
+
 }
 

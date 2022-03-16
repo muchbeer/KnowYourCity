@@ -41,8 +41,9 @@ data class CgrievanceModel(
 @Parcelize
 @Entity(tableName = "d_papAttachEntity")
 data class DpapAttachEntity(
+    @PrimaryKey(autoGenerate = true)
+    val d_pap_key : Int = 0,
     val file_name : String,
-    @PrimaryKey
     val c_fullname: String,
     val url_name : String = ""
 

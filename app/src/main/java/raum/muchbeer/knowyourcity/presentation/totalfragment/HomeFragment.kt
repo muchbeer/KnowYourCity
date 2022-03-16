@@ -77,8 +77,8 @@ class HomeFragment : Fragment() {
 
 
         val dAttach = DpapAttachEntity(
-            file_name = "giannaFilename",
-            url_name = "giannaUrl",
+            file_name = "giovannaFilename",
+            url_name = "giovannaUrl",
             c_fullname = "Gianna")
 
         binding.btnDAttach.setOnClickListener {
@@ -94,6 +94,7 @@ class HomeFragment : Fragment() {
         binding.btnCGrievance.setOnClickListener {
             Log.d(TAG, "tHE value attached is : ${gsonPretty.toJson(dAttachmentList)}")
             viewModel.insertCgriev(cGriev)
+
             Log.d(TAG, "tHE cGriev value is : ${cGriev}")
         }
 
@@ -105,7 +106,8 @@ class HomeFragment : Fragment() {
              )
 
         binding.btnBpapDetail.setOnClickListener {
-                       viewModel.insertBpapsEntry(bAttachTop)
+            viewModel.updatCgrievance(cGriev.copy(attachments = dAttachmentList))
+            viewModel.insertBpapsEntry(bAttachTop)
 
             Log.d(TAG, "tHE cGriev value is : ${bAttachTop}")
         }

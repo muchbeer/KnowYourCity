@@ -74,16 +74,8 @@ class TotalViewModel @Inject constructor(private  val repository : ITotalReposit
         _pKValue.value = pkValue
     }
 
-    fun deletallDattachment() = viewModelScope.launch {
-        repository.deletallDattachmment()
-    }
-
-    fun deletallCgrievance() = viewModelScope.launch {
-        repository.deletallCgrievance()
-    }
-
-    fun deletallBpaps() = viewModelScope.launch {
-        repository.deletallBpaps()
+    fun updatCgrievance(cgriev: CgrievanceModel) = viewModelScope.launch {
+        repository.updateCgrievance(cgriev)
     }
 
     companion object {

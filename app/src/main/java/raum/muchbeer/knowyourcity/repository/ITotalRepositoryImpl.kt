@@ -48,15 +48,9 @@ class ITotalRepositoryImpl(val dao : TotalDao) : ITotalRepository {
       return dao.insertDAttachEntry(dattach)
     }
 
-    override suspend fun deletallCgrievance() {
-       return dao.deleteAllCgrievance()
+    override suspend fun updateCgrievance(cgriev: CgrievanceModel) {
+        dao.updateCgrievance(cgriev)
     }
 
-    override suspend fun deletallDattachmment() {
-        return dao.deleteAllDattach()
-    }
 
-    override suspend fun deletallBpaps() {
-        return dao.deleteAllBpaps()
-    }
 }

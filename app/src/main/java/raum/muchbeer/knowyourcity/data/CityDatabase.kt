@@ -19,7 +19,7 @@ private val TAG = CityDatabase::class.simpleName
     Region::class, RegionPoint::class, Workout::class, WorkoutPoint::class,
     AgrienceModel::class, BpapDetailModel::class, CgrievanceModel::class, DpapAttachEntity::class],
     exportSchema = false,
-    version = 13)
+    version = 15)
 @TypeConverters(Converters::class)
 abstract class CityDatabase() : RoomDatabase() {
 

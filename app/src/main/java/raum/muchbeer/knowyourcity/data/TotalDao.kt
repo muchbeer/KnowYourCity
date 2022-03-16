@@ -44,12 +44,6 @@ interface TotalDao {
     @Query("SELECT * FROM b_grievance")
     fun retrieveAllBPaps() : LiveData<List<BpapDetailModel>>
 
-    @Query("DELETE FROM c_grievance")
-    suspend fun deleteAllCgrievance()
-
-    @Query("DELETE FROM d_papAttachEntity")
-    suspend fun deleteAllDattach()
-
-    @Query("DELETE FROM b_grievance")
-    suspend fun deleteAllBpaps()
+    @Update
+    suspend fun updateCgrievance(cgrienvance: CgrievanceModel)
 }

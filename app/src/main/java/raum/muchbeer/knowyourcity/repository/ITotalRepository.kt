@@ -27,10 +27,6 @@ interface ITotalRepository {
 
     suspend fun insertDattach(dattach : DpapAttachEntity) : Long
 
-    suspend fun deletallCgrievance()
-
-    suspend fun deletallDattachmment()
-
-    suspend fun deletallBpaps()
+    suspend fun updateCgrievance(cgriev: CgrievanceModel)
 
 }

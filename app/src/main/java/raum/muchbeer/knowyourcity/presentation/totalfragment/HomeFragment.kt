@@ -39,12 +39,6 @@ class HomeFragment : Fragment() {
         primarKey = "tech02"
         valuationNo = "tech03"
 
-        val username = binding.usernameEdt.text
-        val agreetosign = binding.agreeToSign.text
-        val fullNameVal = binding.fullName.text
-        val filenameEdt = binding.filename.text
-        val fileUrlEdt = binding.fileUrl.text
-
         val gsonPretty = GsonBuilder().setPrettyPrinting().create()
 
 
@@ -65,7 +59,7 @@ class HomeFragment : Fragment() {
             cgrievList.clear()
             cgrievList.addAll(it)   }
 
-        viewModel.getAllDAttachWithfullName("Gianna").observe(viewLifecycleOwner) {
+        viewModel.getAllDAttachWithfullName("George").observe(viewLifecycleOwner) {
             dAttachmentList.clear()
             dAttachmentList.addAll(it)
        }
@@ -77,9 +71,9 @@ class HomeFragment : Fragment() {
 
 
         val dAttach = DpapAttachEntity(
-            file_name = "giovannaFilename",
-            url_name = "giovannaUrl",
-            c_fullname = "Gianna")
+            file_name = "georgeFilename",
+            url_name = "georgeUrl",
+            c_fullname = "George")
 
         binding.btnDAttach.setOnClickListener {
             viewModel.insertDattach(dattach = dAttach)
@@ -88,7 +82,7 @@ class HomeFragment : Fragment() {
 
         val cGriev = CgrievanceModel(
             agreetosign = "yes",
-            full_name = "Gianna",
+            full_name = "George",
             a_username = "muchbeer",
             attachments = dAttachmentList)
         binding.btnCGrievance.setOnClickListener {
@@ -134,6 +128,7 @@ class HomeFragment : Fragment() {
             viewModel.allAgrienceEntry.observe(viewLifecycleOwner) {
                 val  agrievance: String = gsonPretty.toJson(it)
                 Log.d(TAG, "The AGrievence : ${agrievance}")
+                viewModel.displayApiModel(it)
             }
         }
 

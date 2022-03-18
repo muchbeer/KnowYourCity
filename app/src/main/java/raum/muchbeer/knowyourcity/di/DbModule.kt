@@ -13,6 +13,7 @@ import raum.muchbeer.knowyourcity.data.CityDao
 import raum.muchbeer.knowyourcity.data.CityDatabase
 import raum.muchbeer.knowyourcity.data.CityDatabase.*
 import raum.muchbeer.knowyourcity.data.CityDatabase.Companion.getInstance
+import raum.muchbeer.knowyourcity.data.ModelMapper
 import raum.muchbeer.knowyourcity.data.TotalDao
 import raum.muchbeer.knowyourcity.repository.ICityRepository
 import raum.muchbeer.knowyourcity.repository.ICityRepositoryImpl
@@ -53,6 +54,12 @@ object DbModule {
     @Provides
     @Named("db_coroutine")
     fun provideCallBackCoroutine() = CoroutineScope(SupervisorJob())
+
+    @Singleton
+    @Provides
+    fun provideModlelMapper(): ModelMapper {
+        return ModelMapper()
+    }
 
     @Singleton
     @Provides

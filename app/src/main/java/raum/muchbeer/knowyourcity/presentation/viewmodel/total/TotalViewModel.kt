@@ -5,17 +5,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.GsonBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import raum.muchbeer.knowyourcity.data.AgrienceModel
-import raum.muchbeer.knowyourcity.data.BpapDetailModel
-import raum.muchbeer.knowyourcity.data.CgrievanceModel
-import raum.muchbeer.knowyourcity.data.DpapAttachEntity
+import raum.muchbeer.knowyourcity.data.*
 import raum.muchbeer.knowyourcity.repository.ITotalRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class TotalViewModel @Inject constructor(private  val repository : ITotalRepository)
+class TotalViewModel @Inject constructor(
+    private val repository : ITotalRepository, private val mapper: ModelMapper)
                 : ViewModel() {
 
     private val _pKValue = MutableLiveData<String>()
@@ -29,6 +28,13 @@ class TotalViewModel @Inject constructor(private  val repository : ITotalReposit
     val allCpapsDetailEntry = repository.getAllCGrievanceEntry()
 
     val allDAttachmentEntry = repository.getAllDpapsEntry()
+
+    fun displayApiModel(agrievList : List<AgrienceModel>)  {
+        val gsonPretty = GsonBuilder().setPrettyPrinting().create()
+        agrievList.forEach {
+            Log.d(TAG, "The traffic is : ${gsonPretty.toJson(mapper.mapFromEntity(it))}")
+        }
+    }
 
     fun getAllBGrievWithSameUsername(username : String) : LiveData<List<BpapDetailModel>> {
         return repository.getAllBGrievWithUsername(username = username)

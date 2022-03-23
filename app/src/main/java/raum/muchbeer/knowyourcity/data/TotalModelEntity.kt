@@ -45,6 +45,14 @@ data class DpapAttachEntity(
     val d_pap_key : Int = 0,
     val file_name : String,
     val c_fullname: String,
-    val url_name : String = ""
-
+    val url_name : String = "",
+    @TypeConverters(Converters::class)
+    val image_status : IMAGESTATUS = IMAGESTATUS.NOT_AVAILABLE
 ) : Parcelable
+
+enum class IMAGESTATUS {
+    SUCCESSFUL,
+    AVAILABLE,
+    NOT_AVAILABLE
+}
+

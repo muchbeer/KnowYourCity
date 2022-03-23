@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.GsonBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import raum.muchbeer.knowyourcity.data.*
 import raum.muchbeer.knowyourcity.repository.ITotalRepository
@@ -46,6 +47,10 @@ class TotalViewModel @Inject constructor(
 
     fun getAllDAttachWithfullName(fullName: String) : LiveData<List<DpapAttachEntity>> {
         return repository.getDAddAttachWithfullName(fullName)
+    }
+
+    fun getAllDAttachByStatus(imagestatus: IMAGESTATUS) : Flow<List<DpapAttachEntity>> {
+        return repository.getAllDAttachByStatus(imagestatus)
     }
 
     fun insertAgrievEntry(agriev : AgrienceModel) = viewModelScope.launch {

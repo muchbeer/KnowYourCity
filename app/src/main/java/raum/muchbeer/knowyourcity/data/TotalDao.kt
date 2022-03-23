@@ -2,6 +2,7 @@ package raum.muchbeer.knowyourcity.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TotalDao {
@@ -29,8 +30,12 @@ interface TotalDao {
     @Query("SELECT * FROM d_papAttachEntity WHERE c_fullname = :fullName")
     fun getAllDpapsAttachmentInCGrievence(fullName: String) : LiveData<List<DpapAttachEntity>>
 
+    @Query("SELECT * FROM d_papAttachEntity WHERE image_status = :imageStatus")
+    fun getAllDAttachByStatus(imageStatus: IMAGESTATUS) : Flow<List<DpapAttachEntity>>
+
     @Query("SELECT * FROM b_grievance WHERE a_username =:username")
     fun getAllBpapsWithEachUsername(username: String) : LiveData<List<BpapDetailModel>>
+
 
     @Query("SELECT * FROM a_grievance")
     fun retrieveAgrievanceEntry() : LiveData<List<AgrienceModel>>
@@ -44,6 +49,12 @@ interface TotalDao {
     @Query("SELECT * FROM b_grievance")
     fun retrieveAllBPaps() : LiveData<List<BpapDetailModel>>
 
+    @Query("SELECT * FROM d_papAttachEntity")
+    fun retrieveAllDAttachmentUploads() : Flow<List<DpapAttachEntity>>
+
     @Update
     suspend fun updateCgrievance(cgrienvance: CgrievanceModel)
+
+    @Update
+    suspend fun updateDAttachment(dAttach: DpapAttachEntity)
 }

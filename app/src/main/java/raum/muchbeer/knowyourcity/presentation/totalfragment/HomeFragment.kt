@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.gson.GsonBuilder
 import dagger.hilt.android.AndroidEntryPoint
-import raum.muchbeer.knowyourcity.data.AgrienceModel
-import raum.muchbeer.knowyourcity.data.BpapDetailModel
-import raum.muchbeer.knowyourcity.data.CgrievanceModel
-import raum.muchbeer.knowyourcity.data.DpapAttachEntity
+import kotlinx.coroutines.flow.collect
+import raum.muchbeer.knowyourcity.data.*
 import raum.muchbeer.knowyourcity.databinding.FragmentHomeBinding
 import raum.muchbeer.knowyourcity.presentation.viewmodel.total.TotalViewModel
 
@@ -59,10 +58,13 @@ class HomeFragment : Fragment() {
             cgrievList.clear()
             cgrievList.addAll(it)   }
 
-        viewModel.getAllDAttachWithfullName("George").observe(viewLifecycleOwner) {
-            dAttachmentList.clear()
-            dAttachmentList.addAll(it)
-       }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.getAllDAttachByStatus(imagestatus = IMAGESTATUS.SUCCESSFUL).collect {
+                dAttachmentList.clear()
+                dAttachmentList.addAll(it)
+            }
+        }
+
 
         viewModel.getAllBGrievWithSameUsername(username = "muchbeer").observe(viewLifecycleOwner) {
             bpapsTopList.clear()
@@ -156,18 +158,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun displayValue() {
-
-
-
-
-
-
-       binding.apply {
-
-
-       }
-    }
 
 companion object {
     private val TAG = HomeFragment::class.simpleName

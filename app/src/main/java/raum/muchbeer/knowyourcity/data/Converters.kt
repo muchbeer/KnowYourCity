@@ -84,4 +84,14 @@ class Converters {
 
         return listAttached
     }
+
+    @TypeConverter
+    fun fromImageStatus(imagestatus: IMAGESTATUS): String {
+        return imagestatus.name
+    }
+
+    @TypeConverter
+    fun toImageStatus(imageString: String): IMAGESTATUS {
+        return IMAGESTATUS.valueOf(imageString)
+    }
 }

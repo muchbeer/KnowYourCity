@@ -1,6 +1,7 @@
 package raum.muchbeer.knowyourcity.repository
 
 import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
 import raum.muchbeer.knowyourcity.data.*
 
 interface ITotalRepository {
@@ -19,6 +20,10 @@ interface ITotalRepository {
 
     fun getDAddAttachWithfullName(fullName: String) : LiveData<List<DpapAttachEntity>>
 
+    fun getAllDAttachByStatus(uploadStatus : IMAGESTATUS) : Flow<List<DpapAttachEntity>>
+
+    fun retrieveAllDAttachmentUploads() : Flow<List<DpapAttachEntity>>
+
     suspend fun insertAgrievEntry(agrienceModel: AgrienceModel) : Long
 
     suspend fun insertBpapDetail(bpapsDetail : BpapDetailModel) : Long
@@ -29,4 +34,5 @@ interface ITotalRepository {
 
     suspend fun updateCgrievance(cgriev: CgrievanceModel)
 
+    suspend fun updateDattachment(dattach: DpapAttachEntity)
 }

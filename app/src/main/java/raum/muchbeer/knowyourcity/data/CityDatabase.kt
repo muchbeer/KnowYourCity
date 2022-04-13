@@ -3,16 +3,11 @@ package raum.muchbeer.knowyourcity.data
 import android.content.Context
 import android.util.Log
 import androidx.room.*
-import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.google.gson.GsonBuilder
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.io.IOException
-import javax.inject.Inject
-import javax.inject.Named
-import javax.inject.Provider
 private val TAG = CityDatabase::class.simpleName
 
 @Database(entities = [Activity::class, Location::class,  ActivityLocationCrossRef::class,
@@ -21,8 +16,7 @@ private val TAG = CityDatabase::class.simpleName
     exportSchema = false,
     version = 16)
 @TypeConverters(Converters::class)
-abstract class CityDatabase() : RoomDatabase() {
-
+abstract class CityDatabase : RoomDatabase() {
 
     abstract fun cityDao() : CityDao
     abstract fun totalDao() : TotalDao

@@ -2,13 +2,11 @@ package raum.muchbeer.knowyourcity.data
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
 
 class Converters {
 
-    inline fun <reified T> Gson.fromJson(json: String) = fromJson<T>(
+    private inline fun <reified T> Gson.fromJson(json: String) = fromJson<T>(
         json,
         object : TypeToken<T>() {}.type
     )
@@ -16,49 +14,37 @@ class Converters {
     // ***********BGrievanceModel*****************
 
     @TypeConverter
-    fun papDetailModelToJson(listOfpapIdentity: List<BpapDetailModel>): String {
+    fun papDetailModelToJson(listOfPapIdentity: List<BpapDetailModel>): String {
         val gson = Gson()
-        val gsonPretty = GsonBuilder().setPrettyPrinting()
-            .create()
 
-        if (listOfpapIdentity.isNullOrEmpty()) return ""
+        if (listOfPapIdentity.isNullOrEmpty()) return ""
 
-        val papIDJson = gson.toJson(listOfpapIdentity)
-        return papIDJson
+        return gson.toJson(listOfPapIdentity)
     }
 
     @TypeConverter
     fun papDetailModelToPapModel(jsonPapDetail: String): List<BpapDetailModel> {
-        if (jsonPapDetail.isNullOrEmpty()) return emptyList()
+        if (jsonPapDetail.isEmpty()) return emptyList()
 
-        val type: Type = object : TypeToken<List<BpapDetailModel?>?>() {}.type
-        val paplistEntries: List<BpapDetailModel> =
-            Gson().fromJson<List<BpapDetailModel>>(jsonPapDetail)
-        return paplistEntries
+        return Gson().fromJson(jsonPapDetail)
     }
 
     // ***********CGrievanceModel*****************
     @TypeConverter
-    fun papGrievanceDataToJson(listOfgrievance: List<CgrievanceModel>): String {
+    fun papGrievanceDataToJson(listOfGrievance: List<CgrievanceModel>): String {
         val gson = Gson()
 
-        if (listOfgrievance.isNullOrEmpty()) return ""
+        if (listOfGrievance.isNullOrEmpty()) return ""
 
-        val papIDJson = gson.toJson(listOfgrievance)
-        return papIDJson
+        return gson.toJson(listOfGrievance)
     }
 
     @TypeConverter
     fun papGrievanceDataToGModel(jsonGrievanceDetail: String): List<CgrievanceModel> {
-        val gson = Gson()
 
-        if (jsonGrievanceDetail.isNullOrEmpty()) return emptyList()
+        if (jsonGrievanceDetail.isEmpty()) return emptyList()
 
-        val type: Type = object : TypeToken<List<CgrievanceModel?>?>() {}.type
-        val paplistEntries: List<CgrievanceModel> =
-            Gson().fromJson<List<CgrievanceModel>>(jsonGrievanceDetail)
-
-        return paplistEntries
+        return Gson().fromJson(jsonGrievanceDetail)
     }
 
     // ***********DAttachement*****************
@@ -68,26 +54,19 @@ class Converters {
 
         if (listOfAttachment.isNullOrEmpty()) return ""
 
-        val papAttachJson = gson.toJson(listOfAttachment)
-        return papAttachJson
+        return gson.toJson(listOfAttachment)
     }
 
     @TypeConverter
     fun papDAttachmentToGModel(jsonAttachment: String): List<DpapAttachEntity> {
-        val gson = Gson()
+        if (jsonAttachment.isEmpty()) return emptyList()
 
-        if (jsonAttachment.isNullOrEmpty()) return emptyList()
-
-        val type: Type = object : TypeToken<List<CgrievanceModel?>?>() {}.type
-        val listAttached: List<DpapAttachEntity> =
-            Gson().fromJson<List<DpapAttachEntity>>(jsonAttachment)
-
-        return listAttached
+        return Gson().fromJson(jsonAttachment)
     }
 
     @TypeConverter
-    fun fromImageStatus(imagestatus: IMAGESTATUS): String {
-        return imagestatus.name
+    fun fromImageStatus(imageStatus: IMAGESTATUS): String {
+        return imageStatus.name
     }
 
     @TypeConverter

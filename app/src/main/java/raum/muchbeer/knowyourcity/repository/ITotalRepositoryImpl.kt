@@ -8,6 +8,7 @@ import raum.muchbeer.knowyourcity.data.*
 class ITotalRepositoryImpl(val dao : TotalDao) : ITotalRepository {
 
         override fun getAllAgrievanceEntry(): LiveData<List<AgrienceModel>> {
+            //The best tutorial to finalize the project
           return dao.retrieveAgrievanceEntry()
         }
 
